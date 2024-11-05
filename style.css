@@ -1,0 +1,8 @@
+nav {
+    background-color: green;
+    color: white;
+}
+li a{
+    display: block;
+    width: 50px;
+}
