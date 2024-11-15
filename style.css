@@ -53,7 +53,6 @@
 }
 .box:hover {
     outline: solid 7px #7dd48c;
-    background-color: darken(var(--main-color), 10%);
 }
 .flex-container-form {
     max-width: 500px;
@@ -63,8 +62,7 @@
     background-color: #e9ecd0a9;
     color: var(--main-color);
 }
-
-input {
+input[type="password"], input[type="text"] {
     background-color: whitesmoke;
     width: 350px;
     height: 70px;
@@ -75,7 +73,7 @@ input {
     font-size: xx-large;
     font-family: 'Times New Roman', Times, serif;
 }
-input[type=submit] {
+input[type="submit"] {
     padding: 10px;
     width: 110px;
     background-color: var(--main-color);
