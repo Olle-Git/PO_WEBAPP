@@ -53,6 +53,7 @@
 }
 .box:hover {
     outline: solid 7px #7dd48c;
+    background-color: darken(var(--main-color), 10%);
 }
 .flex-container-form {
     max-width: 500px;
@@ -74,7 +75,7 @@ input {
     font-size: xx-large;
     font-family: 'Times New Roman', Times, serif;
 }
-input[type=button] {
+input[type=submit] {
     padding: 10px;
     width: 110px;
     background-color: var(--main-color);
