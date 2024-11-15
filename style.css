@@ -1,27 +1,5 @@
 * {
-    padding: 0px;
+    border: 1px solid red;
     margin: 0px;
-}
-#wrapper {
-    width: 1500px;
-    height: auto;
-}
-nav {
-    background-color: green;
-    width: 150px;
-    height: 100%;
-}
-ol {
-    list-style-type: none;
-}
-li a{
-    display: block;
-    width: 50px;
-    color: white;
-    padding: 15px 50px;
-    justify-content: center;
-    align-items: center;
-}
-li a:hover {
-    background-color: darkgreen;
+    padding: 0px;
 }
