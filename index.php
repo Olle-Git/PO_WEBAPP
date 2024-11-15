@@ -25,10 +25,37 @@
         <input type="text" placeholder="username" name="username"><br>
         <input type="password" placeholder="passsword" name="password"><br>
         <input type="submit" value="Login">
-        <input type="button" value="Login">
     </Form>
     </div>
     </center>
+<?php
+$username = $wachtwoord = null;
+function isKlant() {
+    $isklant = True;
+    echo "klant";
+}
+function isMedewerker() {
+    $isMedewerker = True;
+    echo 'medewerker';
+}
+function isBezorger() {
+    $isBezorger = True;
+    echo 'bezorger';
+}
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+if ($_POST['username'] ?? null && $_POST['wachtwoord'] ?? null) {
+    $username = test_input($_POST['username']);
+    $wachtwoord = test_input($_POST['wachtwoord']);
+    $hashedwachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
+    submit($username, $hashedwachtwoord, $wachtwoord);
+}
+
+?>
 <?php
 $username = $wachtwoord = null;
 function isKlant() {
