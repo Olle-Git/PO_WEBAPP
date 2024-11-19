@@ -78,4 +78,8 @@ input[type="submit"] {
     width: 110px;
     background-color: var(--main-color);
     color: white;
+    font-size: x-large;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
 }
