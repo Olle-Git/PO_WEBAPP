@@ -1,0 +1,58 @@
+/* navigatiebalk */
+/* voord deze navigatiebalk is gebruik gemaakt met behulp van de webiste van W3Schools*/
+/* CSS Navigation Bar. (z.d.). https://www.w3schools.com/css/css_navbar.asp*/
+    
+nav ul {
+    /* hier geven we de achtergrond een mooie kleur en zorgen we dat onze list geen puntjes heeft. 
+    ook laten we met width 100% de navigatiebalk over de hele pagina verspreiden. 
+    met de property text-align zetten we de list items in het midden zodat hoe groot de webiste ook is de de links altijd in het midden komen te staan*/
+    list-style-type: none;
+    background: #E9ECD0;
+    outline-style: solid;
+    outline-color: black;
+    width: 100%;
+    text-align: left;
+}
+nav li {
+    /*padding gebruiken we om de hoogte te kiezen*/
+    padding: 25px 0;
+    display: inline-block;
+}
+nav a {
+    /* hier maken we de links zwart bold en hoofdletter en zetten we de tekst in het midden zonder streepje aan de onderkant. Met de padding maken we de vakjes de goede grootte*/
+    color: black;
+    padding: 25px 70px;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+nav a:hover {
+    /* als we er met de cursor overheen gaan dan maken we de kleur rood zodat je beter kan zien op welk vakje je probeert te klikken */
+    background-color: #7dd48c;
+}
+
+table {
+    width: 80%;
+    border-collapse: separate; /* Losse borders, zodat ronde hoeken toegevoegd kunnen worden */
+    border-spacing: 0;
+    background-color: #E9ECD0 ;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: auto;
+    overflow: hidden; /* Zorgen dat hoeken rond zijn*/
+    font-family: 'Times New Roman', Times, serif;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+th {
+    background-color: darkgrey;
+}
+
+tr:hover {
+    background-color:#7dd48c; /* Hover effect*/
+}
