@@ -6,6 +6,10 @@ function test_input($data) {
     return $data;
 }
 
+include('DatabaseConnector.php');
+$database = new DatabaseConnector("nyp", "root", "");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = 
+    $username = test_input($_POST["username"]);
+    $password = test_input($_POST["password"]);
 }
