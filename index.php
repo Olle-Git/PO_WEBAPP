@@ -22,6 +22,13 @@
     <div class="flex-container-form" style="margin-top: 200px;" id="login">
     <h1 style="font-size: xx-large;">Login</h1><br>
     <Form action="formhandler.php" method="POST">
+        <?php 
+        if (isset($_GET["error"])) {
+            echo "<p style='color: red;'>Inloggen mislukt probeer het opnieuw</p>";
+        } else if (isset($_GET["error"]) && $_GET["error"] == 2) {
+            echo "<p style='color: green;'>Registratie gelukt, log nu in</p>";
+        }
+        ?>
         <input type="text" placeholder="username" name="username"><br>
         <input type="password" placeholder="passsword" name="password"><br>
         <input type="submit" value="Login">

@@ -67,5 +67,4 @@ class DatabaseConnector
 			throw new Exception("De query kon niet worden uitgevoerd");
 		}
 	}
-	public function drop
 }
