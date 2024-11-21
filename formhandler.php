@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Controleer het wachtwoord en stuur de gebruiker door
 if (logincheck($username, $password)) {
-    header("Location: klant.php"); // Inloggen geslaagd
+    header("Location: klant.html"); // Inloggen geslaagd
 } else {
     header("Location: index.php?error=1"); // Inloggen mislukt
 }
