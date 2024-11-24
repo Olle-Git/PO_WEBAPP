@@ -19,7 +19,7 @@ function connectDatabase($servername = "localhost", $username = "root", $passwor
 // Functie om inloggegevens te controleren
 function logincheck($username, $password) {
     $conn = connectDatabase("localhost", "root", "", "nyp");
-    $stmt = $conn->prepare("SELECT pwd FROM `users` WHERE usr= ?;");
+    $stmt = $conn->prepare("SELECT pwd FROM 'users' WHERE usr= ?;");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->bind_result($dbpassword);
@@ -35,6 +35,18 @@ function logincheck($username, $password) {
         return false; // Wachtwoord incorrect
     }
 }
+function getUser($username) {
+    $conn = connectDatabase();
+    $sql = "SELECT `id` FROM users WHERE usr = ?;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->bind_result($userid);
+    $stmt->fetch();
+    $stmt->close();
+    $conn->close();
+    return $userid;
+}
 
 // Controleer of het een POST-verzoek is
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -43,10 +55,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     exit("Geen POST request"); // Geen POST-verzoek
 }
+// // for debuggen
+// $username = "adrian";
+// $password = "hoi123";
 
+$logincheck = logincheck($username, $password);
 // Controleer het wachtwoord en stuur de gebruiker door
-if (logincheck($username, $password)) {
-    header("Location: klant.html"); // Inloggen geslaagd
+if ($logincheck) {
+    // stuur de gebruiker door en neem het id mee uit de database
+    $userid = getUser($username);
+    echo $userid;
+    // header("Location: klant.php?userid=$userid"); // Inloggen geslaagd
 } else {
-    header("Location: index.php?error=1"); // Inloggen mislukt
+    echo "$username <br> $password <br> $logincheck";
+    // header("Location: index.php?error=1"); // Inloggen mislukt
 }

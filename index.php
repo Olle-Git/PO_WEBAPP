@@ -25,9 +25,7 @@
         <?php 
         if (isset($_GET["error"])) {
             echo "<p style='color: red;'>Inloggen mislukt probeer het opnieuw</p>";
-        } else if (isset($_GET["error"]) && $_GET["error"] == 2) {
-            echo "<p style='color: green;'>Registratie gelukt, log nu in</p>";
-        }
+        } 
         ?>
         <input type="text" placeholder="username" name="username"><br>
         <input type="password" placeholder="passsword" name="password"><br>
