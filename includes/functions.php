@@ -41,12 +41,7 @@ function addUser($username, $email, $password) {
     }
     mysqli_stmt_bind_param($stmt, "sss", $username, $password, $email);
     mysqli_stmt_execute($stmt);
-    $return = mysqli_stmt_get_result($stmt);
-    if ($returnRows = mysqli_fetch_assoc($return)) {
-        return $returnRows;
-    }
-    else {
-        return false;
-    }
-
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    return true;
 }

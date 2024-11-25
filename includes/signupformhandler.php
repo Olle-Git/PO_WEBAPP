@@ -24,19 +24,17 @@ if (isset($_POST["submit"])) {
         exit();
     }
     // $conn = dbConnector();
-
-    if (addUser($naam, $email, $wachtwoord) !== false) {
+    $addUser = addUser($naam, $email, $wachtwoord);
+    if ($addUser !== false) {
         header("location: ../login.php");
         exit();
     } else {
         header("location: ../signup.php?error=stmtfailed");
         exit();
     }
-    echo "er is iets mis gegaan";
 
 } 
 else {
     header("location: ../signup.php?error=none");
     exit();
 }
-echo "er is iets gegaan";
