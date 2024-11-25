@@ -23,10 +23,20 @@ if (isset($_POST["submit"])) {
         header("location: ../signup.php?error=emptyinput");
         exit();
     }
+    // $conn = dbConnector();
 
-    
+    if (addUser($naam, $email, $wachtwoord) !== false) {
+        header("location: ../login.php");
+        exit();
+    } else {
+        header("location: ../signup.php?error=stmtfailed");
+        exit();
+    }
+    echo "er is iets mis gegaan";
 
-} else {
-    header("location: ../signup.php");
+} 
+else {
+    header("location: ../signup.php?error=none");
     exit();
 }
+echo "er is iets gegaan";
