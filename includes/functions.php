@@ -66,5 +66,25 @@ function correctPassword($naam, $wachtwoord) {
     } else {
         return false;
     }
+}
 
+function getTable($table, $id, $idValue) {
+    $conn = dbConnector();
+    $sql = "SELECT * FROM ? WHERE ? = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../klant.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ssi", $table, $id, $idValue);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    $row = mysqli_fetch_assoc($result);
+    if ($row) {
+        return $row;
+    } else {
+        return false;
+    }
 }
