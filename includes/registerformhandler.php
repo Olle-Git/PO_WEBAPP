@@ -1,17 +1,4 @@
 <?php
-
-// $serverNaam = "localhost";
-// $dbUser = "root";
-// $dbWachtwoord = "";
-// $dbNaam = "nyp";
-
-// $conn = mysqli_connect($serverNaam, $dbUser, $dbWachtwoord, $dbNaam);
-
-// if (!$conn) {
-//     die("Connection failed".mysqli_connect_error());
-// } 
-
-// komt van de loginpagina
 if (isset($_POST["submit"])) {
     $naam = $_POST["username"];
     $email = $_POST["email"];
@@ -20,7 +7,7 @@ if (isset($_POST["submit"])) {
     require_once "functions.php";
 
     if (emptyInput($naam, $email, $wachtwoord) !== false) {
-        header("location: ../signup.php?error=emptyinput");
+        header("location: ../register.php?error=emptyinput");
         exit();
     }
     // $conn = dbConnector();
@@ -29,12 +16,12 @@ if (isset($_POST["submit"])) {
         header("location: ../login.php");
         exit();
     } else {
-        header("location: ../signup.php?error=stmtfailed");
+        header("location: ../register.php?error=stmtfailed");
         exit();
     }
 
 } 
 else {
-    header("location: ../signup.php?error=none");
+    header("location: ../register.php?error=none");
     exit();
 }
