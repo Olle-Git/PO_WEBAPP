@@ -1,5 +1,36 @@
 <?php
 session_start();
+include_once "includes/functions.php";
+if (!isset($_SESSION["UserID"])) {
+    header("location: login.php");
+    exit();
+}
+$userID = $_SESSION["UserID"];
+echo $userID . "<br>";
+// $klantenTable = getTable("klanten", "usr_id", $userID);
+// if ($klantenTable == false) {
+//     echo "Geen klant gevonden<br>";
+//     exit();
+// } else {
+//     echo "klant gevonden<br>";
+//     $klanten_id = $klantenTable["id"];
+// }
+// $ordersTable = getTable("orders", "klant_id", $klanten_id);
+// if ($ordersTable == false) {
+//     echo "order niet gevonden<br>";
+// }
+// else {
+//     echo "order gevonden<br>";
+// }
+
+// $bestelregelsTable = getTable("bestelregels", "order_id", $ordersTable["id"]);
+// $productenTable = getTable("producten", "id", $bestelregelsTable["product_id"]);
+
+
+// $rawOrders = getTableRaw("orders", "klant_id", $klanten_id);
+// $rawBestelregels = getTableRaw("bestelregels", "order_id", $ordersTable["id"]);
+// $rawProducten = getTableRaw("producten", "id", $bestelregelsTable["product_id"]);
+$result = tableData($userID);
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,53 +56,38 @@ session_start();
             <li class="navitems"><a href="">Deals</a></li>
         </ul>
     </nav>
-
-<h1 style="color: white; margin-bottom: 2rem;">Uw bestellingen</h2>
     <table>
     <thead>
         <tr>
-            <th>Bestellingen</th>
-            <th>Datum</th>
-            <th>Details</th>
+            <?php
+            if ($result == false) {
+                echo "bestelregels niet gevonden<br>";
+            } 
+            else {
+                TableHead();
+                echo "tablehead generated<br>";
+            }
+            ?>
         </tr>
     </thead>
-<?php 
-// //connect to database and get orderid and date in list
-// $conn = connectDatabase();
-// $sql = "SELECT `id`, `besteldatum` FROM orders WHERE userid = ?;";
-// $stmt = $conn->prepare($sql);
-// $stmt->bind_param("i", $userid);
-// $stmt->execute();
-// $stmt->bind_result($orderid, $orderdate);
-// $stmt->fetch();
-// $stmt->close();
+    <tbody>
+        <tr>
+            <?php 
+                while($row = mysqli_fetch_assoc($result))
+                {
+                    echo "<td>" . $row["id"] . "</td>";
+                    echo "<td>". $row["besteldatum"] ."</td>";
+                    echo "<td>". $row["aantal"] . "x " . $row['naam'] . "</td>";
+                    echo "</tr>";
+                }
+            ?>
 
-// // connect to database bestelregels and get aantal en product_id
-// $sql2 = "SELECT `aantal`, `product_id` FROM bestelregels WHERE order_id = ?;";
-// $stmt2 = $conn->prepare($sql2);
-// $stmt2->bind_param("i", $orderid);
-// $stmt2->execute();
-// $stmt2->bind_result($aantal, $product_id);
-// $stmt2->fetch();
-// $stmt2->close();
+    </tbody>
+    </table>
 
-// // connect to database producten and get product name and prijs
-// $sql3 = "SELECT `naam`, `prijs` FROM producten WHERE id = ?;";
-// $stmt3 = $conn->prepare($sql3);
-// $stmt3->bind_param("i", $product_id);
-// $stmt3->execute();
-// $stmt3->bind_result($productname, $productprice);
-// $stmt3->fetch();
-// $stmt3->close();
 
-include_once "includes/functions.php";
-$userID = $_SESSION["UserID"];
-// echo $userID;
-$klantenTable = getTable("klanten", "usr_id", $userID);
-$klanten_id = $klantenTable["id"];
-$ordersTable = getTable("orders", "klant_id", "(SELECT id FROM klanten WHERE usr_id = $userID)");
-$bestelregelsTable = getTable("bestelregels", "order_id", $ordersTable["id"]);  
 
+<?php
 // echo "
 //     <tbody>
 //         <tr>
@@ -90,7 +106,7 @@ $bestelregelsTable = getTable("bestelregels", "order_id", $ordersTable["id"]);
 //             <td>2x Milkshake</td>
 //         </tr>
 //     </tbody>
-//     </table>
+//      </table>
 // ";
 ?>
 </body>
