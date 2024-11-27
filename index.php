@@ -15,23 +15,12 @@
     <div class="flex-container">
         <a href="login.php"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Login</div></a>
         <a href="register.php"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Sign up</div></a>
-        <!-- <a href="#login"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Bezorger</div></a> -->
     </div>
-
-    <!-- <center>
-    <div class="flex-container-form" style="margin-top: 200px;" id="login">
-    <h1 style="font-size: xx-large;">Login</h1><br>
-    <Form action="formhandler.php" method="POST">
         <?php 
         if (isset($_GET["error"])) {
             echo "<p style='color: red;'>Inloggen mislukt probeer het opnieuw</p>";
         } 
         ?>
-        <input type="text" placeholder="username" name="username"><br>
-        <input type="password" placeholder="passsword" name="password"><br>
-        <input type="submit" value="Login">
-    </Form>
-    </div> -->
     </center>
 </body>
 </html>

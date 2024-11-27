@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 26 nov 2024 om 20:17
+-- Gegenereerd op: 27 nov 2024 om 15:52
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -31,8 +31,17 @@ CREATE TABLE `bestelregels` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `aantal` int(255) NOT NULL
+  `aantal` int(255) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `bestelregels`
+--
+
+INSERT INTO `bestelregels` (`id`, `order_id`, `product_id`, `aantal`) VALUES
+(1, 1, 1, 2),
+(2, 1, 4, 1),
+(3, 3, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -48,6 +57,13 @@ CREATE TABLE `klanten` (
   `huisnummer` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `klanten`
+--
+
+INSERT INTO `klanten` (`id`, `usr_id`, `plaats`, `straat`, `huisnummer`) VALUES
+(1, 35, 'zaandam', 'leegwaterweg', '7');
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +77,15 @@ CREATE TABLE `orders` (
   `bezorger_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `orders`
+--
+
+INSERT INTO `orders` (`id`, `klant_id`, `besteldatum`, `bezorger_id`) VALUES
+(1, 1, '2024-11-27 12:55:49', 36),
+(2, 1, '2024-11-27 14:18:11', 34),
+(3, 1, '2024-11-27 15:27:08', 34);
+
 -- --------------------------------------------------------
 
 --
@@ -72,8 +97,19 @@ CREATE TABLE `producten` (
   `naam` varchar(255) NOT NULL,
   `beschrijfing` mediumtext DEFAULT NULL,
   `prijs` int(255) DEFAULT NULL,
-  `beschikbaarheid` int(255) UNSIGNED DEFAULT NULL
+  `beschikbaarheid` int(255) UNSIGNED DEFAULT 255
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `producten`
+--
+
+INSERT INTO `producten` (`id`, `naam`, `beschrijfing`, `prijs`, `beschikbaarheid`) VALUES
+(1, 'milkshake aardbei', 'aardbei milkshake medium', 400, 255),
+(2, 'milkshake banaan', NULL, 400, 255),
+(3, 'milkshake vanille', NULL, 400, 255),
+(4, 'pizza margarita', NULL, 1200, 255),
+(5, 'pizza pepperoni', NULL, 1300, 255);
 
 -- --------------------------------------------------------
 
@@ -86,7 +122,7 @@ CREATE TABLE `users` (
   `usr` varchar(30) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `pos` int(2) NOT NULL
+  `pos` int(2) NOT NULL COMMENT 'klant = 0\r\nbezorger = 1\r\nmedewerker = 2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -95,7 +131,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usr`, `pwd`, `email`, `pos`) VALUES
 (34, 'adrian', '$2y$10$Tnx1vbEq2ColA8wV85cgCOZH13p7MmfTjgglxK37rDKyOjTuTiMgW', '204091@stmichaelcollege.nl', 0),
-(35, 'test1', '$2y$10$.INLiCVjO91246zLxdokL.SKKsrr4atJxuZwoOkAnPMnOduxVp.CS', 'test@mail.com', 0);
+(35, 'test1', '$2y$10$.INLiCVjO91246zLxdokL.SKKsrr4atJxuZwoOkAnPMnOduxVp.CS', 'test@mail.com', 0),
+(36, 'Olle', '$2y$10$HhJVWwkN4QTMEcOpaDypO.0/9fyXT0VA3yEivyR71SJV1LHn3fVVS', 'olle@stmichaelcollege.nl', 1);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -144,25 +181,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `bestelregels`
 --
 ALTER TABLE `bestelregels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT voor een tabel `klanten`
 --
 ALTER TABLE `klanten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT voor een tabel `producten`
+--
+ALTER TABLE `producten`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
