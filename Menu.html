@@ -30,6 +30,7 @@
     td:hover {
     background-color:#7dd48c; /* Hover effect*/
 }
+    }
 </style>
 
     </head>
@@ -105,9 +106,52 @@
             <td><img src="img/Veggie_deluxe-8067.png" alt="" width=50%><br><center>Een groenterijke pizza vol smaak</center></td>
             <td><img src="img/Zwarte_truffel-9554.png" alt="" width=50%><br><center>Een luxe pizza met de verfijnde smaak van zwarte truffel</center></td>
         </tr>
-       
       </table>
+
       <br><br><br><br><br>
+
+      <center>    <h1>Bestelling plaatsen</h1>
+        <form action="(moet jij ff linken naar de juiste).php" method="POST">
+    
+            <!-- Naam -->
+            <label for="naam">Naam:</label>
+            <input type="text" id="naam" name="naam" placeholder="Uw naam" required>
+            <br><br>
+    
+            <!-- E-mail -->
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Uw e-mailadres" required>
+            <br><br>
+    
+            <!-- Telefoonnummer -->
+            <label for="telefoon">Telefoonnummer:</label>
+            <input type="tel" id="telefoon" name="telefoon" placeholder="Uw telefoonnummer" required>
+            <br><br>
+    
+            <!-- Pizza keuze -->
+            <label for="pizza">Kies uw pizza:</label>
+            <input list="pizza-lijst" id="pizza" name="pizza" placeholder="Selecteer een pizza" required>
+            <datalist id="pizza-lijst">
+                <option value="4 Kazen Pizza">
+                <option value="BBQ Bacon">
+                <option value="BBQ Meat Lovers">
+                <option value="Buffalo Chicken">
+                <option value="Californian">
+                <option value="Hawaii">
+                <option value="Margherita">
+                <option value="Vegan Shoarma">
+                <option value="Zwarte Truffel">
+            </datalist>
+            <br><br>
+    
+            <!-- Aantal pizza's -->
+            <label for="aantal">Aantal:</label>
+            <input type="number" id="aantal" name="aantal" min="1" max="10" value="1" required>
+            <br><br>
+    
+            <!-- Verzenden -->
+            <input type="submit" value="Bestelling plaatsen">
+        </form></center>
       
 </body>
 </html>
