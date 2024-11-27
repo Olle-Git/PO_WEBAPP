@@ -13,6 +13,7 @@ if (isset($_POST["submit"])) {
     if ($UserInfo != false) {
         session_start();
         $_SESSION["UserID"] = $UserInfo["id"];
+        $_SESSION["Username"] = $UserInfo["usr"];
         header("location: ../klant.php");
         exit();
     } else {
