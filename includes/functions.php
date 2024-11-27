@@ -68,47 +68,6 @@ function correctPassword($naam, $wachtwoord) {
     }
 }
 
-function getTable($table, $colmn, $idValue) {
-    $conn = dbConnector();
-    $sql = "SELECT * FROM $table WHERE $colmn = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../klant.php?error=stmtfailed");
-        exit();
-    }
-    mysqli_stmt_bind_param($stmt, "i", $idValue);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
-    $row = mysqli_fetch_assoc($result);
-    if ($result) {
-        return $row;
-    } else {
-        return false;
-    }
-}
-function getTableRaw($table, $colmn, $idValue) {
-    $conn = dbConnector();
-    $sql = "SELECT * FROM $table WHERE $colmn = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../klant.php?error=stmtfailed");
-        exit();
-    }
-    mysqli_stmt_bind_param($stmt, "i", $idValue);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
-    // $row = mysqli_fetch_assoc($result);
-    if ($result) {
-        return $result;
-    } else {
-        return false;
-    }
-}
-
 function TableHead() {
     echo "<h1 style='color:white; margin-top:10px;'>Uw bestellingen</h1>";
     echo "<th>Ordernummer</th>";
