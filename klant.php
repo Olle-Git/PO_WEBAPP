@@ -18,6 +18,9 @@ $result = tableData($userID);
     <link rel="stylesheet" href="style.css">
     <title>Uw bestellingen</title>    
     <style>
+        tr:hover {
+background-color:#7dd48c; /* Hover effect*/
+}
     </style>
 
     </head>

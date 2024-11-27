@@ -83,3 +83,7 @@ input[type="submit"] {
     border-radius: 6px;
     margin-top: 20px;
 }
+
+td:hover {
+    background-color:#7dd48c; /* Hover effect*/
+}
