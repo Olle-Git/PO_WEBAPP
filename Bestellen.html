@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Adrian Bleeker, Olle van Damme">
+    <link rel="stylesheet" href="style_paginas.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Uw bestellingen</title>
+    <script>
+        // Function die een nieuw blok voo het kiezen toevoegt
+        function addPizzaSelection() {
+            const form = document.getElementById("order-form");
+            const container = document.createElement("div");
+            container.className = "pizza-selection";
+
+            // Maakt de Pizza keuze
+            const pizzaLabel = document.createElement("label");
+            pizzaLabel.setAttribute("for", `pizza-${Date.now()}`);
+            pizzaLabel.innerText = "Kies uw pizza:";
+            container.appendChild(pizzaLabel);
+
+            const pizzaInput = document.createElement("input");
+            pizzaInput.setAttribute("list", "pizza-lijst");
+            pizzaInput.setAttribute("name", "pizza[]");
+            pizzaInput.setAttribute("placeholder", "Selecteer een pizza");
+            pizzaInput.setAttribute("required", true);
+            container.appendChild(pizzaInput);
+
+            const pizzaList = document.getElementById("pizza-lijst").cloneNode(true);
+            pizzaInput.setAttribute("id", `pizza-${Date.now()}`);
+            container.appendChild(pizzaList);
+
+            // Maakt de hoeveelheid keuze
+            const amountLabel = document.createElement("label");
+            amountLabel.setAttribute("for", `aantal-${Date.now()}`);
+            amountLabel.innerText = "Aantal:";
+            container.appendChild(amountLabel);
+
+            const amountInput = document.createElement("input");
+            amountInput.setAttribute("type", "number");
+            amountInput.setAttribute("name", "aantal[]");
+            amountInput.setAttribute("min", "1");
+            amountInput.setAttribute("max", "10");
+            amountInput.setAttribute("value", "1");
+            amountInput.setAttribute("required", true);
+            container.appendChild(amountInput);
+
+            // Create Add Button
+            const addButton = document.createElement("button");
+            addButton.type = "button"; // Zorgt ervoor dat de form niet verzonden wordt!!!
+            addButton.innerText = "Voeg een nieuw product toe";
+            addButton.className = "add-button";
+            addButton.addEventListener("click", addPizzaSelection);
+            container.appendChild(addButton);
+
+            form.appendChild(container);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Voegt de selectie toe
+            addPizzaSelection();
+        });
+    </script>
+</head>
+<body>
+    <nav>
+        <ul class="nav-list">
+            <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li>
+            <li class="navitems"><a href="index.php">Home</a></li>
+            <li class="navitems"><a href="Menu.html">Menu</a></li>
+            <li class="navitems"><a href="Bestellen.html">Bestellen</a></li>
+            <li class="navitems"><a href="includes/logout.php">Log uit</a></li>
+        </ul>
+    </nav>
+
+    <center>
+        <h1>Bestelling plaatsen</h1>
+        <form id="order-form" action="(moet jij ff linken naar de juiste).php" method="POST">
+            <!-- Naam -->
+            <label for="naam">Naam:</label>
+            <input type="text" id="naam" name="naam" placeholder="Uw naam" required>
+            <br><br>
+
+            <!-- E-mail -->
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Uw e-mailadres" required>
+            <br><br>
+
+            <!-- Telefoonnummer -->
+            <label for="telefoon">Telefoonnummer:</label>
+            <input type="tel" id="telefoon" name="telefoon" placeholder="Uw telefoonnummer" required>
+            <br><br>
+
+            <!-- Pizza opties -->
+            <datalist id="pizza-lijst">
+                <option value="4 Kazen Pizza">
+                <option value="BBQ Bacon">
+                <option value="BBQ Meat Lovers">
+                <option value="Buffalo Chicken">
+                <option value="Californian">
+                <option value="Hawaii">
+                <option value="Margherita">
+                <option value="Vegan Shoarma">
+                <option value="Zwarte Truffel">
+            </datalist>
+            <br><br>
+
+            <!-- Submit -->
+            <input type="submit" value="Bestelling plaatsen">
+        </form>
+    </center>
+</body>
+</html>
