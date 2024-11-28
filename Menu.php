@@ -51,7 +51,7 @@
     </nav>
     <br><br>
     <table>
-
+        <form action="includes/bestellingenhandler.php" method="post">
         <th colspan="3">MENU</th>
         <?php 
             require_once "includes/functions.php";
@@ -61,23 +61,7 @@
       </table>
             <br><br><br><br><br>
       <center>
-        <h1 style="color: white;">Bestelling</h1>
-        <form action="includes/bestellingenhandler.php" method="post">
-
-            <!-- Producten -->
-            <label for='product1'>Bestelregel 1: </label>
-            <select name='product1' id='product1' required>
-                <option value='$IDPizza1'>$pizza1</option>
-                <option value='$IDPizza2'>$pizza2</option>
-            </select>
-            
-            <!-- Aantal pizza's -->
-            <label for="aantal">Aantal: </label>
-            <input type="number" id="aantal" name="aantal1" value="1" required>
-            <br><br>
-    
-            <!-- Verzenden -->
-            <input type="submit" value="Bestelling plaatsen">
+            <input type="submit" name="submit" value="Bestelling plaatsen" style="width: auto; background-color:white; color:black;">
         </form></center>
 
 

@@ -27,9 +27,12 @@
             echo "<p style='color: red;'>Inloggen mislukt probeer het opnieuw</p>";
         } 
         ?>
-        <input type="text" name="email" placeholder="email">
+        <input type="text" name="email" placeholder="email"><br>
         <input type="text" placeholder="username" name="username"><br>
-        <input type="password" placeholder="passsword" name="password"><br>
+        <input type="password" placeholder="password" name="password"><br>
+        <input type="text" placeholder="plaats" name="plaats"><br>
+        <input type="text" placeholder="straat" name="straat"><br>
+        <input type="text" placeholder="huisnummer" name="huisnummer"><br>
         <input type="submit" name="submit" value="Sign up">
     </Form>
     </div>
