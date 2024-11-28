@@ -6,8 +6,12 @@
     <meta name="author" content="Adrian Bleeker, Olle van Damme">
     <link rel="stylesheet" href="style_paginas.css">
     <link rel="stylesheet" href="style.css">
-    <title>Uw bestellingen</title>    
+    <title>Uw bestellingen</title>  
+
     <style>
+      tr:hover {
+      background-color:#7dd48c; /* Hover effect*/
+      }
     </style>
 
     </head>
@@ -19,13 +23,12 @@
             <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li>
             <li class="navitems"><a href="index.php">Home</a></li>
             <li class="navitems"><a href="Menu.html">Menu</a></li>
-            <li class="navitems"><a href="">Deals</a></li>
             <li class="navitems"><a href="includes/logout.php">Log uit</a></li>
         </ul>
     </nav>
     <br><br>
     <table>
-        <th>Onafgeronde Bestelling</th>
+        <th colspan="3">Onafgeronde Bestelling</th>
         <tr>
           <th>Bestellingen</th>
           <th>Adres</th>
@@ -49,7 +52,7 @@
       </table>
       <br><br><br><br><br>
       <table>
-        <th>Afgeronde Bestelling</th>
+        <th colspan="3">Afgeronde Bestelling</th>
         <tr>
           <th>Bestellingen</th>
           <th>Adres</th>

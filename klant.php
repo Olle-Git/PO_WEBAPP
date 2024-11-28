@@ -32,7 +32,6 @@ background-color:#7dd48c; /* Hover effect*/
             <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li>
             <li class="navitems"><a href="index.php">Home</a></li>
             <li class="navitems"><a href="">Menu</a></li>
-            <li class="navitems"><a href="">Deals</a></li>
             <li class="navitems"><a href="includes/logout.php">Log uit</a></li>
         </ul>
     </nav>
