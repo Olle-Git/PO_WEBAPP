@@ -108,3 +108,37 @@ function tableData($userID) {
     }
 
 }
+function menuTable() {
+    $conn = dbConnector();
+    $sql = "SELECT  * FROM producten;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../menu.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    if ($result) {
+        return $result;
+    } else {
+        return false;
+    }
+}
+
+function drawMenu($result) {
+    $i = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($i % 3 == 0) {
+            echo "<tr>";
+            echo "<td>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . "onclick='clickMenu(".$i.")' id='".$i."'><br>" . $row["beschrijfing"] . "<br>" . $row["prijs"] ."</td>";
+        } else if ($i % 3 == 1) {
+            echo "<td>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . "onclick='clickMenu(".$i.")' id='".$i."'><br>" . $row["beschrijfing"] . "<br>" . $row["prijs"] ."</td>";
+        } else if ($i % 3 == 2) {
+            echo "<td>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . "onclick='clickMenu(".$i.")' id='".$i."'><br>" . $row["beschrijfing"] . "<br>" . $row["prijs"] ."</td>";
+            echo "</tr>";
+        }
+        $i++;
+    }
+}

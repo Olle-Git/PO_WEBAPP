@@ -57,7 +57,7 @@
           <th colspan="3">PIZZA'S</th>
         </tr>
         <tr>
-          <td><img src="img/4_cheese-8058.png" alt="" >,<br>Een heerlijke 4 kazen pizza</td>
+          <td><img src="img/4_cheese-8058.png" alt="" onclick="menuclick(1)">,<br>Een heerlijke 4 kazen pizza</td>
           <td><img src="img/BBQ_Bacon-8045.png" alt="" ><br>Een pittige BBQ pizza met sappige bacon</td>
           <td><img src="img/BBQ_meatlovers-8053.png" alt="" ><br>Een ultieme BBQ pizza met een mix van vlees</td>
         </tr>
@@ -167,5 +167,10 @@
             <!-- Verzenden -->
             <input type="submit" value="Bestelling plaatsen">
         </form></center>
+        <script>
+            function menuclick($id) {
+                alert("U heeft gekozen voor pizza " + $id);
+            }
+        </script>
 </body>
 </html>
