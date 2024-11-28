@@ -63,15 +63,25 @@
       <center>
         <h1 style="color: white;">Bestelling</h1>
         <form action="includes/bestellingenhandler.php" method="post">
+
+            <!-- Producten -->
+            <label for='product1'>Bestelregel 1: </label>
+            <select name='product1' id='product1' required>
+                <option value='$IDPizza1'>$pizza1</option>
+                <option value='$IDPizza2'>$pizza2</option>
+            </select>
+            
             <!-- Aantal pizza's -->
-            <label for="aantal" style="color:white;">Aantal:</label>
-            <input type="text" id="aantal" name="aantal" min="1" max="10" value="1" required>
+            <label for="aantal">Aantal: </label>
+            <input type="number" id="aantal" name="aantal1" value="1" required>
             <br><br>
     
             <!-- Verzenden -->
             <input type="submit" value="Bestelling plaatsen">
         </form></center>
-        <script>
+
+
+        <!-- <script>
             let productCounter = {};
 
             function clickMenu(id) {
@@ -86,6 +96,6 @@
             }
 
 
-        </script>
+        </script> -->
 </body>
 </html>
