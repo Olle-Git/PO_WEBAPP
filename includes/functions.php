@@ -175,7 +175,7 @@ function drawMenu($result) {
 
 function addOrder($userID) {
     $conn = dbConnector();
-    $sql = "INSERT INTO orders (klant_id, bezorger_id) VALUES ((SELECT id FROM klanten WHERE usr_id=?), 34)";
+    $sql = "INSERT INTO orders (klant_id, bezorger_id) VALUES ((SELECT id FROM klanten WHERE usr_id=?), (SELECT id FROM users WHERE pos=1 LIMIT 1))";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../menu.php?error=stmtfailed");
