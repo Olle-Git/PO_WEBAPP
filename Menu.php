@@ -5,7 +5,6 @@ if (!isset($_SESSION["UserID"]) || $_SESSION["UserID"] != true) {
     exit();
 }
 ?>
-?>
 <!DOCTYPE html>
 <html>
     <head>
