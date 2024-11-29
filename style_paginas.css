@@ -61,3 +61,7 @@ form {
     background-color: #E9ECD0 ;
 }
 
+
+td:hover {
+    background-color:#7dd48c; /* Hover effect*/
+}
