@@ -10,10 +10,19 @@ if (isset($_POST["submit"])) {
         exit();
     }
     $UserInfo = correctPassword($naam, $wachtwoord);
-    if ($UserInfo != false) {
+    if ($UserInfo !== false) {
+        if ($UserInfo["pos"] == 1) {
+            session_start();
+            $_SESSION["UserID"] = $UserInfo["id"];
+            $_SESSION["Username"] = $UserInfo["usr"];
+            $_SESSION["bezorger"] = true;
+            header("location: ../bezorger.php");
+            exit();
+        }
         session_start();
         $_SESSION["UserID"] = $UserInfo["id"];
         $_SESSION["Username"] = $UserInfo["usr"];
+        $_SESSION["bezorger"] = false;
         header("location: ../klant.php");
         exit();
     } else {

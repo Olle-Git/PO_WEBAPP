@@ -1,8 +1,8 @@
 <?php
 session_start();
 include_once "includes/functions.php";
-if (!isset($_SESSION["UserID"])) {
-    header("location: login.php");
+if (!isset($_SESSION["UserID"]) || $_SESSION["UserID"] != true) {
+    header("location: index.php");
     exit();
 }
 $userID = $_SESSION["UserID"];
@@ -19,8 +19,8 @@ $result = tableData($userID);
     <title>Uw bestellingen</title>    
     <style>
         tr:hover {
-background-color:#7dd48c; /* Hover effect*/
-}
+            background-color:#7dd48c; /* Hover effect*/
+        }
     </style>
 
     </head>
@@ -33,6 +33,7 @@ background-color:#7dd48c; /* Hover effect*/
             <li class="navitems"><a href="index.php">Home</a></li>
             <li class="navitems"><a href="Menu.php">Menu</a></li>
             <li class="navitem"><a href="#">Mijn bestellingen</a></li>
+            <?php if (isset($_SESSION["bezorger"])) if ($_SESSION["bezorger"] == true) { {echo "<li class='navitem'><a href='bezorger.php'>bezorgers</a></li>";}}?>
             <li class="navitems"><a href="includes/logout.php">Log uit</a></li>
         </ul>
     </nav>
