@@ -219,6 +219,16 @@ function addBestelregels($orderID, $productID, $aantal) {
     mysqli_stmt_bind_param( $stmt,"iii", $orderID, $productID, $aantal);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close( $stmt);
+    $sql2 = "UPDATE producten SET beschikbaarheid = beschikbaarheid - ? WHERE id = ?;";
+    $stmt2 = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt2, $sql2)) {
+        header("location: ../menu.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt2, "ii", $aantal, $productID);
+    mysqli_stmt_execute($stmt2);
+    mysqli_stmt_get_result($stmt2);
+    mysqli_stmt_close($stmt2);
     mysqli_close($conn);
     return true;
 }

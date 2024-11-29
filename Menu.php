@@ -46,8 +46,7 @@ if (!isset($_SESSION["UserID"])) {
         display: none;
     }
 </style>
-
-    </head>
+</head>
 
     
 
@@ -76,23 +75,5 @@ if (!isset($_SESSION["UserID"])) {
       <center>
             <input type="submit" name="submit" value="Bestelling plaatsen" style="width: auto; background-color:white; color:black;">
         </form></center>
-
-
-        <!-- <script>
-            let productCounter = {};
-
-            function clickMenu(id) {
-                alert("U hebt een artikel toegevoegd aan uw bestelling.");
-                if (!productCounter[id]) {
-                    productCounter[id] = 1;
-                }
-                productCounter[id]++;
-            }
-            function toPHP() {
-                
-            }
-
-
-        </script> -->
 </body>
 </html>

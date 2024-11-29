@@ -8,14 +8,12 @@ if (!isset($_SESSION["UserID"])) {
     exit();
 }
 $userID = $_SESSION["UserID"];
-// echo $userID . "<br>";
 
 if (isset($_POST["submit"])) {
     $row = addOrder($userID);
     $orderID = $row['id'];
-    // echo $orderID. "<br>";
 
-    $result = menuTable();
+    $result = menuTable(); 
     $i=0;
     while ($row = mysqli_fetch_assoc($result)) {
         $i++;
@@ -23,14 +21,11 @@ if (isset($_POST["submit"])) {
             $productID = $i;
             $aantal = $_POST["$i"];
             addBestelregels($orderID, $productID, $aantal);
-        // echo $i .':'. $_POST["$i"].'<br>';	
         }
     }
-    // echo 'exit 2';
-    header("location: ../gelukt.php");
+    header("location: ../klant.php");
     exit();
 } else {
     header("location: ../index.php");
-    // echo "exit 3";
     exit();
 }
