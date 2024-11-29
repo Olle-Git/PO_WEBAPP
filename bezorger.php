@@ -32,7 +32,7 @@ if (!isset($_SESSION["bezorger"]) || $_SESSION["bezorger"] != true) {
     <nav>   
         <ul class="nav-list">
             <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li> <!--Dit is voor de navigatie bar bovenin de pagina-->
-            <li class="navitems"><a href="index.php">Home</a></li>
+            <li class="navitems"><a href="index.php">Home</a></li>                    <!--In dit blok words de afbeelging toegevoegd, en de knoppen naar de juiste pagina, dit wordt gedaan door meerdere ordered lists in een unordered list te plaatsen-->
             <li class="navitems"><a href="Menu.php">Menu</a></li>
             <li class="navitem"><a href="klant.php">Mijn bestellingen</a></li>
             <li class="navitem"><a href="#">bezorgers</a></li>
@@ -42,6 +42,7 @@ if (!isset($_SESSION["bezorger"]) || $_SESSION["bezorger"] != true) {
     <br><br>
     <table>
         <th colspan="4">Bestellingen</th>
+        <!--In het blok hieronder wordt met php uit de database alle bestellingen gehaald en weergven-->
         <?php
         require_once "includes/functions.php";
         $result = bezorger();

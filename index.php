@@ -20,7 +20,8 @@ exit();
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <center><img src="img/NYP.png" max-width="830px"></center>
+    <!--In het blok hieronder worden de inlogknoppen gemaakt en weergegeven, daaronder zorgt een stukje php ervoor dat als er iets fout gaat dat dit op de pagina wordt weergegeven-->
+    <center><img src="img/NYP.png" max-width="830px"></center> 
     <div class="flex-container">
         <a href="login.php#login"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Login</div></a>
         <a href="register.php#signup"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Sign up</div></a>
