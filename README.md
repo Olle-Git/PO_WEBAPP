@@ -1,4 +1,7 @@
 # README 
+## Bezorgers
+Om een account voor bezorgers te maken gebruik je de normale signup pagina.
+Daarna moet, omdat een bezorgersaccount toch wordt beheerd door de manager, moet deze in de tabel bij het account de positie van 0 naar 1 zetten. 
 ## BRONNEN
 How to create a login system in PHP for beginners | Procedural MySQLi | PHP Tutorial
 by Dani Krossing

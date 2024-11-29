@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION["UserID"])) {
-    header("location: login.php");
+if (!isset($_SESSION["UserID"]) || $_SESSION["UserID"] != true) {
+    header("location: index.php");
     exit();
 }
+?>
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,6 +59,7 @@ if (!isset($_SESSION["UserID"])) {
             <li class="navitems"><a href="index.php">Home</a></li>
             <li class="navitems"><a href="#">Menu</a></li>
             <li class="navitem"><a href="klant.php">Mijn bestellingen</a></li>
+            <?php if (isset($_SESSION["bezorger"])) if ($_SESSION["bezorger"] == true) { {echo "<li class='navitem'><a href='bezorger.php'>bezorgers</a></li>";}}?>
             <li class="navitems"><a href="includes/logout.php">Log uit</a></li>
         </ul>
     </nav>

@@ -46,17 +46,11 @@ function alreadyTaken($value, $colmn){
     mysqli_close($conn);
 
     $row = mysqli_fetch_assoc($result);
-    if ($row[$colmn] == $value) {
+    if ($row["$colmn"] == $value) {
         return true;
     } else {
         return false;
     }
-
-//     if ($result) {
-//         return true;
-//     } else {
-//         return false;
-//     }
 }
 
 function addUser($username, $email, $password, $plaats, $straat, $huisnummer) {
@@ -231,4 +225,23 @@ function addBestelregels($orderID, $productID, $aantal) {
     mysqli_stmt_close($stmt2);
     mysqli_close($conn);
     return true;
+}
+
+function bezorger() {
+    $conn = dbConnector();
+    $sql = "SELECT orders.id, straat, huisnummer, plaats, aantal, naam, email FROM users JOIN klanten ON users.id=klanten.usr_id JOIN orders ON klanten.id=orders.klant_id JOIN bestelregels ON orders.id=bestelregels.order_id JOIN producten ON bestelregels.product_id=producten.id;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../bezorger.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    if ($result) {
+        return $result;
+    } else {
+        return false;
+    }
 }
