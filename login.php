@@ -13,15 +13,15 @@
 <body>
     <center><img src="img/NYP.png" max-width="830px"></center>
     <div class="flex-container">
-        <a href="#"><div class="box" style="outline: solid 4px #7dd48c;"><img src="img/icon.png" width="100px" class="icon"><br>Login</div></a>
-        <a href="register.php"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Sign up</div></a>
+        <a href="#login"><div class="box" style="outline: solid 4px #7dd48c;"><img src="img/icon.png" width="100px" class="icon"><br>Login</div></a>
+        <a href="register.php#signup"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Sign up</div></a>
         <!-- <a href="#login"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Bezorger</div></a> -->
     </div>
 
     <center>
     <div class="flex-container-form" style="margin-top: 200px;" id="login">
     <h1 style="font-size: xx-large;">Login</h1><br>
-    <Form action="includes\loginformhandler.php" method="POST">
+    <Form action="includes\loginformhandler.php" method="POST" id="login">
         <?php 
         if (isset($_GET["error"])) {
             echo "<p style='color: red;'>Inloggen mislukt probeer het opnieuw</p>";

@@ -13,8 +13,8 @@
 <body>
     <center><img src="img/NYP.png" max-width="830px"></center>
     <div class="flex-container">
-        <a href="login.php"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Login</div></a>
-        <a href="register.php"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Sign up</div></a>
+        <a href="login.php#login"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Login</div></a>
+        <a href="register.php#signup"><div class="box"><img src="img/icon.png" width="100px" class="icon"><br>Sign up</div></a>
     </div>
         <?php 
         if (isset($_GET["error"])) {

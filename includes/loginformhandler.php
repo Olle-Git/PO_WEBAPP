@@ -1,9 +1,9 @@
 <?php
 if (isset($_POST["submit"])) {
-    $naam = $_POST["username"];
-    $wachtwoord = $_POST["password"];
-
     require_once "functions.php";
+    $naam = test_input($_POST["username"]);
+    $wachtwoord = test_input($_POST["password"]);
+
 
     if (emptyInput($naam, $wachtwoord, $wachtwoord) !== false) {
         header("location: ../login.php?error=emptyinput");
