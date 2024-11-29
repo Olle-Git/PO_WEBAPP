@@ -44,11 +44,19 @@ function alreadyTaken($value, $colmn){
     $result = mysqli_stmt_get_result($stmt);
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-    if ($result) {
+
+    $row = mysqli_fetch_assoc($result);
+    if ($row[$colmn] == $value) {
         return true;
     } else {
         return false;
     }
+
+//     if ($result) {
+//         return true;
+//     } else {
+//         return false;
+//     }
 }
 
 function addUser($username, $email, $password, $plaats, $straat, $huisnummer) {
@@ -63,7 +71,7 @@ function addUser($username, $email, $password, $plaats, $straat, $huisnummer) {
     mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPwd, $email);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    $sql2 = "INSERT INTO klanten (usr_id, plaats, straat, huisnummer) VALUES ((SELECT id FROM users WHERE usr=?), ?, ?, ?);";
+    $sql2 = "INSERT INTO klanten (usr_id, plaats, straat, huisnummer) VALUES ((SELECT id FROM users WHERE usr=? LIMIT 1), ?, ?, ?);";
     $stmt2 = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt2, $sql2)) {
         header("location: ../signup.php?error=stmt2failed");
@@ -160,22 +168,24 @@ function menuTable() {
 function drawMenu($result) {
     $i = 0;
     while ($row = mysqli_fetch_assoc($result)) {
-        if ($i % 3 == 0) {
-            echo "<tr>";
-            echo "<td>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . " id='".$i."'><br>" . $row["beschrijfing"] . "<br>€" . $row["prijs"]/100 . "<br>" . "<label for='aantal'>Aantal: </label><input type='number' value'0' id='aantal' name='" . $row["id"] . "'>" . "</td>";
-        } else if ($i % 3 == 1) {
-            echo "<td>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . " id='".$i."'><br>" . $row["beschrijfing"] . "<br>€" . $row["prijs"]/100 . "<br>" . "<label for='aantal'>Aantal: </label><input type='number' value'0' id='aantal' name='" . $row["id"] . "'>" . "</td>";
-        } else if ($i % 3 == 2) {
-            echo "<td>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . " id='".$i."'><br>" . $row["beschrijfing"] . "<br>€" . $row["prijs"]/100 . "<br>" . "<label for='aantal'>Aantal: </label><input type='number' value'0' id='aantal' name='" . $row["id"] . "'>" . "</td>";
-            echo "</tr>";
-        }
+        if ($row['beschikbaarheid'] <= 0) {$availeble='empty';}
+            if ($i % 3 == 0) { 
+                echo "<tr>";
+                echo "<td class='".$availeble."'>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . " id='".$i."'><br>" . $row["beschrijfing"] . "<br>€" . $row["prijs"]/100 . "<br>" . "<label for='aantal'>Aantal: </label><input type='number' value'0' id='aantal' name='" . $row["id"] . "'>" . "</td>";
+            } else if ($i % 3 == 1) {
+                echo "<td class='".$availeble."'>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . " id='".$i."'><br>" . $row["beschrijfing"] . "<br>€" . $row["prijs"]/100 . "<br>" . "<label for='aantal'>Aantal: </label><input type='number' value'0' id='aantal' name='" . $row["id"] . "'>" . "</td>";
+            } else if ($i % 3 == 2) {
+                echo "<td class='".$availeble."'>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . " id='".$i."'><br>" . $row["beschrijfing"] . "<br>€" . $row["prijs"]/100 . "<br>" . "<label for='aantal'>Aantal: </label><input type='number' value'0' id='aantal' name='" . $row["id"] . "'>" . "</td>";
+                echo "</tr>";
+            }
+        $availeble='available';
         $i++;
     }
 }
 
 function addOrder($userID) {
     $conn = dbConnector();
-    $sql = "INSERT INTO orders (klant_id, bezorger_id) VALUES ((SELECT id FROM klanten WHERE usr_id=?), (SELECT id FROM users WHERE pos=1 LIMIT 1))";
+    $sql = "INSERT INTO orders (klant_id, bezorger_id) VALUES ((SELECT id FROM klanten WHERE usr_id=? LIMIT 1), (SELECT id FROM users WHERE pos=1 LIMIT 1))";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../menu.php?error=stmtfailed");

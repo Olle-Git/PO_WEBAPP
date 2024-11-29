@@ -26,9 +26,6 @@ if (isset($_POST["submit"])) {
         header("location: ../register.php?error=emailtaken");
         exit();
     }
-    // $con
-
-    // $conn = dbConnector();
     $addUser = addUser($naam, $email, $wachtwoord, $plaats, $straat, $huisnummer);
     if ($addUser !== false) {
         header("location: ../login.php");

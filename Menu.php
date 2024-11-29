@@ -39,6 +39,9 @@ if (!isset($_SESSION["UserID"])) {
     td:hover {
     background-color:#7dd48c; /* Hover effect*/
     }
+    .empty {
+        background-color: gray;
+    }
 </style>
 
     </head>
