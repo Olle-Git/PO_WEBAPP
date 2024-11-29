@@ -4,6 +4,7 @@ require_once "functions.php";
 session_start();
 if (!isset($_SESSION["UserID"])) {
     header("location: ../login.php");
+    echo "exit 1";
     exit();
 }
 $userID = $_SESSION["UserID"];
@@ -25,10 +26,12 @@ if (isset($_POST["submit"])) {
         // echo $i .':'. $_POST["$i"].'<br>';	
         }
     }
-    header("location ../gelukt.php");
+    // echo 'exit 2';
+    header("location: ../gelukt.php");
     exit();
 } else {
     header("location: ../index.php");
+    // echo "exit 3";
     exit();
 }
 exit();
