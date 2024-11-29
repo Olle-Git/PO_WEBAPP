@@ -2,18 +2,16 @@
     /* outline: 1px solid red; */
     margin: 0;
     padding: 0;
+    /* css variabelen voor veelgebruikte kleuren */
     --main-color: #006215;
     --transparant: rgba(255, 0, 0, 0);
 }
-/* .gulzar-regular {
-    font-family: "Gulzar", serif;
-    font-weight: 400;
-    font-style: normal;
-    } */
-    a {
-        text-decoration: none;
-    }
-    body {
+/* geen opmaak voor de links */
+a {
+    text-decoration: none;
+}
+/* maak de achtergrond op en centreer de afbeelding boven in het midden */
+body {
     background-color: #006215;
     background-image: url(img/Background2.png);
     background-position: center top;
@@ -23,37 +21,32 @@
     margin-inline: auto;
 }
 
+/* gebruik flexbox om de divs in een lijn te zetten in het midden met een gat van 5rem, heeft te maken met de font-size */
 .flex-container {
     margin-inline: auto;
-    /* padding-top: 1px; */
     margin-top: 50px;
-    /* min-height: 100px; */
     background-color: var(--transparant);
-
     display: flex;
     gap: 5rem;
     flex-wrap: wrap;
     justify-content: center;
 }
+/* pas flexbox toe op de childs en zorgt dat die er ook mooi uit zien */
 .box {
     background-color: #E9ECD0;
     width: 250px;
     padding: 10px;
-    /* flex: 1; */
     text-decoration: none; /* no underline */
 
     text-align: center;
     border-radius: 14px;
     font-size: xx-large;
     color: var(--main-color);
-    
-    /* display: flex;
-    align-items: center;
-    flex-direction: column; */
 }
 .box:hover {
     outline: solid 7px #7dd48c;
 }
+/* pas flex toe op het form */
 .flex-container-form {
     max-width: 500px;
     padding: 50px 0;
@@ -62,6 +55,7 @@
     background-color: #e9ecd0a9;
     color: var(--main-color);
 }
+/* opmaak voor het formulier */
 input[type="password"], input[type="text"], input[type="email"] {
     background-color: whitesmoke;
     width: 350px;
@@ -82,8 +76,4 @@ input[type="submit"] {
     border: none;
     border-radius: 6px;
     margin-top: 20px;
-}
-
-td:hover {
-    background-color:#7dd48c; /* Hover effect*/
 }

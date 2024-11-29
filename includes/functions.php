@@ -1,12 +1,13 @@
 <?php
 
+// test input and prevent xss 
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
-
+//connect to the database with this function
 function dbConnector() {
     $serverNaam = "localhost";
     $Uid = "root";
@@ -21,7 +22,7 @@ function dbConnector() {
         return $conn;
     }
 }
-
+// check if the input is empty
 function emptyInput($naam, $email, $wachtwoord) {
     if (empty($naam) || empty($email) || empty($wachtwoord)) {
         $result = true;
@@ -30,7 +31,7 @@ function emptyInput($naam, $email, $wachtwoord) {
     }
     return $result;
 }
-
+// check if the email or username is taken already
 function alreadyTaken($value, $colmn){
     $conn = dbConnector();
     $sql = "SELECT * FROM users WHERE $colmn = ?;";
@@ -46,13 +47,14 @@ function alreadyTaken($value, $colmn){
     mysqli_close($conn);
 
     $row = mysqli_fetch_assoc($result);
-    if ($row["$colmn"] == $value) {
+    if ($row[$colmn] == $value) {
         return true;
     } else {
         return false;
     }
 }
 
+// add user to the database
 function addUser($username, $email, $password, $plaats, $straat, $huisnummer) {
     $conn = dbConnector();
     $sql = "INSERT INTO users (usr, pwd, email) VALUES (?, ?, ?);";
@@ -77,6 +79,7 @@ function addUser($username, $email, $password, $plaats, $straat, $huisnummer) {
     mysqli_close($conn);
     return true;
 }
+// check if the password is correct and return all column from the users table 
 function correctPassword($naam, $wachtwoord) {
     $conn = dbConnector();
     $sql = "SELECT * FROM users WHERE usr = ? OR email = ?;";
@@ -99,6 +102,7 @@ function correctPassword($naam, $wachtwoord) {
     }
 }
 
+// maakt de uw bestellingen head 
 function TableHead() {
     echo "<h1 style='color:white; margin-top:10px;'>Uw bestellingen</h1>";
     echo "<th>Ordernummer</th>";
@@ -106,6 +110,7 @@ function TableHead() {
     echo "<th>Details</th>";
 }
 
+//haalt bestelregels met bijhorende informatie uit de database
 function tableData($userID) {
     $conn = dbConnector();
     $sql = 
@@ -138,8 +143,9 @@ function tableData($userID) {
     } else {
         return false;
     }
-
 }
+
+// haalt alle colommen uit de productentabel
 function menuTable() {
     $conn = dbConnector();
     $sql = "SELECT  * FROM producten;";
@@ -159,6 +165,7 @@ function menuTable() {
     }
 }
 
+// maakt de tabel voor de menukaart met alle tekst en afbeeldingen
 function drawMenu($result) {
     $i = 0;
     while ($row = mysqli_fetch_assoc($result)) {
@@ -177,6 +184,7 @@ function drawMenu($result) {
     }
 }
 
+// voegt een order toe aan de database en retouneert het order_id uit de orders tabel
 function addOrder($userID) {
     $conn = dbConnector();
     $sql = "INSERT INTO orders (klant_id, bezorger_id) VALUES ((SELECT id FROM klanten WHERE usr_id=? LIMIT 1), (SELECT id FROM users WHERE pos=1 LIMIT 1))";
@@ -202,6 +210,7 @@ function addOrder($userID) {
     return $row;
 }
 
+// voegt de bestelregel toe aan de bestelregelstabel en haalt het aantal bestelde producten van de vooraad af
 function addBestelregels($orderID, $productID, $aantal) {
     $conn = dbConnector();
     $sql = "INSERT INTO bestelregels (order_id, product_id, aantal) VALUES (?, ?, ?);";
@@ -227,6 +236,7 @@ function addBestelregels($orderID, $productID, $aantal) {
     return true;
 }
 
+// retouneert de informatie voor de bezorgerstabel (adresgegevens, aantal bestellingen, naam van het product en email van de klant)
 function bezorger() {
     $conn = dbConnector();
     $sql = "SELECT orders.id, straat, huisnummer, plaats, aantal, naam, email FROM users JOIN klanten ON users.id=klanten.usr_id JOIN orders ON klanten.id=orders.klant_id JOIN bestelregels ON orders.id=bestelregels.order_id JOIN producten ON bestelregels.product_id=producten.id;";
