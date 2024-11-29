@@ -1,3 +1,5 @@
+<!--in het php blok hieronderde wordt gekeken of er een sessie bezig is en als dat zo is wordt hij leeggemaakt-->
+
 <?php
 session_start();
 if (!isset($_SESSION["bezorger"]) || $_SESSION["bezorger"] != true) {
