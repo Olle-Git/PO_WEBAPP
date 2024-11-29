@@ -10,13 +10,14 @@ if (!isset($_SESSION["UserID"]) || $_SESSION["UserID"] != true) {
 <html>
     <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Standaard informatie over de webpagina in de head-->
     <meta name="author" content="Adrian Bleeker, Olle van Damme">
     <link rel="stylesheet" href="style_paginas.css">
     <link rel="stylesheet" href="style.css">
     <title>Uw bestellingen</title>
     
-    <style>
+    <!-- Internal CSS voor de opmaak van tabellen en foto's-->
+    <style>    
     table {
         width: 80%;
         border-collapse: collapse; 

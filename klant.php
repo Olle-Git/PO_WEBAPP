@@ -12,7 +12,7 @@ $result = tableData($userID);
 <html>
     <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Standaard informatie over de webpagina in de head-->
     <meta name="author" content="Adrian Bleeker, Olle van Damme">
     <link rel="stylesheet" href="style_paginas.css">
     <link rel="stylesheet" href="style.css">
@@ -29,7 +29,7 @@ $result = tableData($userID);
 
     <nav>   
         <ul class="nav-list">
-            <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li>
+            <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li> <!-- Dit is voor de navigatiebar boven in de pagina-->
             <li class="navitems"><a href="index.php">Home</a></li>
             <li class="navitems"><a href="Menu.php">Menu</a></li>
             <li class="navitem"><a href="#">Mijn bestellingen</a></li>

@@ -9,7 +9,7 @@ if (!isset($_SESSION["bezorger"]) || $_SESSION["bezorger"] != true) {
 <html>
     <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!--Basis informatie in de head over de webpagina-->
     <meta name="author" content="Adrian Bleeker, Olle van Damme">
     <link rel="stylesheet" href="style_paginas.css">
     <link rel="stylesheet" href="style.css">
@@ -31,7 +31,7 @@ if (!isset($_SESSION["bezorger"]) || $_SESSION["bezorger"] != true) {
 
     <nav>   
         <ul class="nav-list">
-            <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li>
+            <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li> <!--Dit is voor de navigatie bar bovenin de pagina-->
             <li class="navitems"><a href="index.php">Home</a></li>
             <li class="navitems"><a href="Menu.php">Menu</a></li>
             <li class="navitem"><a href="klant.php">Mijn bestellingen</a></li>
