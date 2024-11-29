@@ -31,6 +31,26 @@ function emptyInput($naam, $email, $wachtwoord) {
     return $result;
 }
 
+function alreadyTaken($value, $colmn){
+    $conn = dbConnector();
+    $sql = "SELECT * FROM users WHERE $colmn = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../signup.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt,"s", $value);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function addUser($username, $email, $password, $plaats, $straat, $huisnummer) {
     $conn = dbConnector();
     $sql = "INSERT INTO users (usr, pwd, email) VALUES (?, ?, ?);";
@@ -99,7 +119,8 @@ function tableData($userID) {
         JOIN 
             producten ON bestelregels.product_id = producten.id 
         WHERE 
-            orders.klant_id = (SELECT id FROM klanten WHERE usr_id = ?);";
+            orders.klant_id = (SELECT id FROM klanten WHERE usr_id = ?)
+        ORDER BY orders.id;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../klant.php?error=stmtfailed");

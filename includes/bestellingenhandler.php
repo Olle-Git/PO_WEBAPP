@@ -34,4 +34,3 @@ if (isset($_POST["submit"])) {
     // echo "exit 3";
     exit();
 }
-exit();

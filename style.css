@@ -62,7 +62,7 @@
     background-color: #e9ecd0a9;
     color: var(--main-color);
 }
-input[type="password"], input[type="text"] {
+input[type="password"], input[type="text"], input[type="email"] {
     background-color: whitesmoke;
     width: 350px;
     height: 70px;

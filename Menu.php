@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["UserID"])) {
+    header("location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +20,7 @@
         width: 80%;
         border-collapse: collapse; 
         text-align: center; 
-
+    }
     th, td {
         text-align: center;
         padding: 5px; 
@@ -31,7 +38,6 @@
 
     td:hover {
     background-color:#7dd48c; /* Hover effect*/
-}
     }
 </style>
 
@@ -45,7 +51,8 @@
         <ul class="nav-list">
             <li class="navlogo"><img src="img/NYP.png" height="71px" alt="logo"></li>
             <li class="navitems"><a href="index.php">Home</a></li>
-            <li class="navitems"><a href="">Menu</a></li>
+            <li class="navitems"><a href="#">Menu</a></li>
+            <li class="navitem"><a href="klant.php">Mijn bestellingen</a></li>
             <li class="navitems"><a href="includes/logout.php">Log uit</a></li>
         </ul>
     </nav>
