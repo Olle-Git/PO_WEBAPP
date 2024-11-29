@@ -42,6 +42,9 @@ if (!isset($_SESSION["UserID"])) {
     .empty {
         background-color: gray;
     }
+    .empty input[type="number"], label {
+        display: none;
+    }
 </style>
 
     </head>

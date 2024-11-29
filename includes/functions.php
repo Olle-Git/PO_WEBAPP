@@ -168,6 +168,7 @@ function menuTable() {
 function drawMenu($result) {
     $i = 0;
     while ($row = mysqli_fetch_assoc($result)) {
+        $availeble='available';
         if ($row['beschikbaarheid'] <= 0) {$availeble='empty';}
             if ($i % 3 == 0) { 
                 echo "<tr>";
@@ -178,7 +179,6 @@ function drawMenu($result) {
                 echo "<td class='".$availeble."'>" . $row["naam"] . "<br>" .  "<img src='img/pizzamenu/" . $row["id"] . ".png' " . " id='".$i."'><br>" . $row["beschrijfing"] . "<br>€" . $row["prijs"]/100 . "<br>" . "<label for='aantal'>Aantal: </label><input type='number' value'0' id='aantal' name='" . $row["id"] . "'>" . "</td>";
                 echo "</tr>";
             }
-        $availeble='available';
         $i++;
     }
 }
